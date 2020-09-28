@@ -1,457 +1,355 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <section class="content">
-        <section class="block">
-            <div class="container">
-
-                <form class="form form-submit">
-                    <section>
-                        <h2>Business Information</h2>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="name" class="col-form-label required">Subject Name</label>
-                                    <input name="name" type="text" class="form-control" id="name" placeholder="Name" required>
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-4-->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="email" class="col-form-label required">Category</label>
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="Email" required>
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-4-->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="phone" class="col-form-label required">Initial Capital</label>
-                                    <input name="phone" type="text" class="form-control" id="phone" placeholder="Phone" required>
-                                    <span class="input-group-addon">$</span>
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-4-->
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="name" class="col-form-label required">Legale Status</label>
-                                    <input name="name" type="text" class="form-control" id="name" placeholder="Name" required>
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-4-->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="email" class="col-form-label required">Status</label>
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="Email" required>
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-4-->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="phone" class="col-form-label required">Creation Year</label>
-                                    <input name="phone" type="text" class="form-control" id="phone" placeholder="Phone" required>
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-4-->
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="name" class="col-form-label required">Nuis</label>
-                                    <input name="name" type="text" class="form-control" id="name" placeholder="Name" required>
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-4-->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="email" class="col-form-label required">Phone</label>
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="Email" required>
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-4-->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="phone" class="col-form-label required">Email</label>
-                                    <input name="phone" type="text" class="form-control" id="phone" placeholder="Phone" required>
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-4-->
-                        </div>
-                    </section>
-                    <!--end basic information-->
-{{--                    <section>--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-4">--}}
-{{--                                <h2>Category</h2>--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="submit-category" class="col-form-label">Category</label>--}}
-{{--                                    <select class="change-tab" data-change-tab-target="category-tabs" name="submit_category" id="submit-category" data-placeholder="Select Category">--}}
-{{--                                        <option value="">Select Category</option>--}}
-{{--                                        <option value="computers">Computers</option>--}}
-{{--                                        <option value="real_estate">Real Estate</option>--}}
-{{--                                        <option value="cars_motorcycles">Cars & Motorcycles</option>--}}
-{{--                                        <option value="furniture">Furniture</option>--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                                <!--end form-group-->--}}
-{{--                            </div>--}}
-{{--                            <!--end col-md-4-->--}}
-{{--                            --}}
-{{--                            <!--end col-md-8-->--}}
-{{--                        </div>--}}
-{{--                        <!--end row-->--}}
-{{--                    </section>--}}
-                    <section>
-                        <div class="form-group">
-                            <label for="details" class="col-form-label">Description</label>
-                            <textarea name="details" id="details" class="form-control" rows="4"></textarea>
-                        </div>
-                        <!--end form-group-->
-
-                        <div class="form-group">
-                            <label for="details" class="col-form-label">Company Service Description</label>
-                            <textarea name="details" id="details" class="form-control" rows="4"></textarea>
-                        </div>
-                        <!--end form-group-->
-                    </section>
-
-{{--                    <section>--}}
-{{--                        <h2>Location</h2>--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-4">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="city" class="col-form-label required">City</label>--}}
-{{--                                    <select name="city" id="city" data-placeholder="Select City" required>--}}
-{{--                                        <option value="">City</option>--}}
-{{--                                        <option value="1">London</option>--}}
-{{--                                        <option value="2">New York</option>--}}
-{{--                                        <option value="3">Paris</option>--}}
-{{--                                        <option value="4">Moscow</option>--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                                <!--end form-group-->--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-4">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="district" class="col-form-label required">District</label>--}}
-{{--                                    <select name="district" id="district" data-placeholder="Select District" required>--}}
-{{--                                        <option value="">District</option>--}}
-{{--                                        <option value="1">Manhattan</option>--}}
-{{--                                        <option value="2">Brooklyn</option>--}}
-{{--                                        <option value="3">Queens</option>--}}
-{{--                                        <option value="4">The Bronx</option>--}}
-{{--                                        <option value="5">Staten Island</option>--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                                <!--end form-group-->--}}
-{{--                            </div>--}}
-{{--                            <!--end col-md-6-->--}}
-{{--                            <div class="col-md-4">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="street" class="col-form-label">Street</label>--}}
-{{--                                    <input name="street" type="text" class="form-control" id="street">--}}
-{{--                                </div>--}}
-{{--                                <!--end form-group-->--}}
-{{--                            </div>--}}
-{{--                            <!--end col-md-6-->--}}
-{{--                        </div>--}}
-{{--                        <!--end row-->--}}
-{{--                        <div class="form-group">--}}
-{{--                            <label for="input-location" class="col-form-label">Exact Location</label>--}}
-{{--                            <input name="location" type="text" class="form-control" id="input-location" placeholder="Enter Location">--}}
-{{--                            <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top" title="Find My Position"><i class="fa fa-map-marker"></i></span>--}}
-{{--                        </div>--}}
-{{--                        <!--end form-group-->--}}
-{{--                        <label>Map</label>--}}
-{{--                        <div class="map height-400px" id="map-submit"></div>--}}
-{{--                        <input name="latitude" type="text" class="form-control" id="latitude" hidden>--}}
-{{--                        <input name="longitude" type="text" class="form-control" id="longitude" hidden>--}}
-{{--                    </section>--}}
-        <section>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="state_id" class="col-form-label">State</label>
-                                <select class="change-tab" data-change-tab-target="category-tabs" name="state_id" id="state_id" data-placeholder="Select State">
-                                    @foreach($state as $br)
-
-                                        <option value="{{ $br->id }}">{{ $br->name }}</option>
-
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <!--end col-md-4-->
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="city_id" class="col-form-label">City</label>
-                                <select class="change-tab" data-change-tab-target="category-tabs" name="city_id" id="city_id" data-placeholder="Select City">
-
-                                </select>
-                            </div>
-                        </div>
-                        <!--end col-md-4-->
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="phone" class="col-form-label required">Official Address</label>
-                                <input name="phone" type="text" class="form-control" id="phone" placeholder="Phone" required>
-                            </div>
-                            <!--end form-group-->
-                        </div>
-                        <!--end col-md-4-->
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="phone" class="col-form-label required">Verified</label>
-                                <input name="phone" type="text" class="form-control" id="phone" placeholder="Phone" required>
-                            </div>
-                            <!--end form-group-->
-                        </div>
-                        <!--end col-md-4-->
+    <!--Breadcrumb-->
+    <section>
+        <div class="bannerimg cover-image bg-background3" data-image-src="{{asset('frontend/assets/images/banners/banner2.jpg')}}">
+            <div class="header-text mb-0">
+                <div class="container">
+                    <div class="text-center text-white">
+                        <h1 class="">Add Business</h1>
+                        <ol class="breadcrumb text-center">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">My Dashboard</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">Add Business</li>
+                        </ol>
                     </div>
-        </section>
-
-                    <section>
-                        <h2>Gallery</h2>
-                        <div class="file-upload-previews"></div>
-                        <div class="file-upload">
-                            <input type="file" name="files[]" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
-                            <span><i class="fa fa-plus-circle"></i>Click or drag images here</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/Breadcrumb-->
+    <!--User Dashboard-->
+<section class="sptb">
+    <div class="container">
+        <div class="row">
+            @include('layouts.sidebar')
+        <div class="col-xl-9 col-lg-12 col-md-12">
+                    <div class="card mb-0 overflow-hidden">
+                        <form method="post" action="{{ route('store_business')}}" enctype="multipart/form-data">
+                            @csrf
+                        <div class="card-header">
+                            <h3 class="card-title">Add Business</h3>
                         </div>
-                    </section>
-
-                    <section>
-                        <h2>Additional Information</h2>
-                        <h3>Opening Hours<span class="note">(optional)</span></h3>
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="accordion-heading-1">
-                                    <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#accordion-collapse-1" aria-expanded="false" aria-controls="accordion-collapse-1">
-                                            <i class="fa fa-clock-o"></i>Add opening hours
-                                        </a>
-                                    </h4>
-                                </div>
-                                <!--end panel-heading-->
-                                <div id="accordion-collapse-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion-heading-1">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-4 horizontal-input-title">
-                                                <strong>Monday</strong>
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="open_hours[]" placeholder="Open">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="close_hours[]" placeholder="Close">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                        </div>
-                                        <!--end row-->
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-4 horizontal-input-title">
-                                                <strong>Tuesday</strong>
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="open_hours[]" placeholder="Open">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="close_hours[]" placeholder="Close">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                        </div>
-                                        <!--end row-->
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-4 horizontal-input-title">
-                                                <strong>Wednesday</strong>
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="open_hours[]" placeholder="Open">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="close_hours[]" placeholder="Close">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                        </div>
-                                        <!--end row-->
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-4 horizontal-input-title">
-                                                <strong>Thursday</strong>
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="open_hours[]" placeholder="Open">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="close_hours[]" placeholder="Close">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                        </div>
-                                        <!--end row-->
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-4 horizontal-input-title">
-                                                <strong>Friday</strong>
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="open_hours[]" placeholder="Open">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="close_hours[]" placeholder="Close">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                        </div>
-                                        <!--end row-->
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-4 horizontal-input-title">
-                                                <strong>Saturday</strong>
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="open_hours[]" placeholder="Open">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="close_hours[]" placeholder="Close">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                        </div>
-                                        <!--end row-->
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-4 horizontal-input-title">
-                                                <strong>Sunday</strong>
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="open_hours[]" placeholder="Open">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="close_hours[]" placeholder="Close">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-4-->
-                                        </div>
-                                        <!--end row-->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Subject Name</label>
+                                        <input name="subject_name" type="text" class="form-control" id="subject_name" placeholder="Subject Name" required>
                                     </div>
                                 </div>
-                                <!--end panel-collapse-->
+
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Category</label>
+                                        <select class="form-control select2-show-search border-bottom-0 w-100 select2-show-search" name="category_id" id="category_id" data-placeholder="Select" required>
+                                            <option value="">Choose Category</option>
+                                                @foreach($categories as $category)
+
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+
+                                                @endforeach
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Initial Capital</label>
+                                        <input name="initial_capital" type="text" class="form-control" id="initial_capital" placeholder="Initial Capital" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Legale Status</label>
+                                        <input name="legale_status" type="text" class="form-control" id="legale_status" placeholder="Legale Status" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Status</label>
+                                        <input name="status" type="text" class="form-control" id="status" placeholder="Status" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Creation Year</label>
+                                        <input name="creation_year" type="text" class="form-control" id="creation_year" placeholder="Creation Year" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Nuis</label>
+                                        <input name="nuis" type="text" class="form-control" id="nuis" placeholder="Nuis" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Phone</label>
+                                        <input name="phone" type="text" class="form-control" id="phone" placeholder="phone" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Email</label>
+                                        <input name="email" type="text" class="form-control" id="email" placeholder="Email" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Description</label>
+                                        <textarea name="description" id="description" class="form-control" rows="4" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Company Service Description</label>
+                                        <textarea name="company_service_description" id="company_service_description" class="form-control" rows="4" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">State</label>
+                                        <select class="form-control select2-show-search border-bottom-0 w-100 select2-show-search" name="state_id" id="state_id" onchange="getCities(this)" data-placeholder="Select State" required>
+                                                <option value="">Choose State</option>
+                                                @foreach($states as $state)
+
+                                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
+
+                                                @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">City</label>
+                                        <select class="form-control select2-show-search border-bottom-0 w-100 select2-show-search"name="city_id" id="city_id"  data-placeholder="Select City" required>
+                                            <option value="">Choose City</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Official Address</label>
+                                        <input name="official_address" type="text" class="form-control" id="official_address" placeholder="Official Address" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Verified</label>
+                                        <input name="verified" type="text" class="form-control" id="verified" placeholder="Verified" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <label class="form-label">Upload Multiple Photos</label>
+                                    <div class="input-group control-group increment1" >
+                                        <input type="file" name="photo_id[]" class="form-control" required>
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success1" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                                        </div>
+                                    </div>
+                                    <div class="clone hide">
+                                        <div class="control-group1 input-group" style="margin-top:10px">
+                                            <input type="file" name="photo_id[]" class="form-control">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-danger1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                               </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <label class="form-label">Upload Multiple Videos</label>
+                                    <div class="input-group control-group increment2" >
+                                        <input type="file" name="video_id[]" class="form-control" required>
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success2" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                                        </div>
+                                    </div>
+                                    <div class="clone hide">
+                                        <div class="control-group2 input-group" style="margin-top:10px">
+                                            <input type="file" name="video_id[]" class="form-control">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-danger2" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6 col-md-6" style="margin-top:20px">
+                                    <label class="form-label">Upload Multiple Documents</label>
+                                    <div class="input-group control-group increment3" >
+                                        <input type="file" name="doc_id[]" class="form-control" required>
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success3" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                                        </div>
+                                    </div>
+                                    <div class="clone hide">
+                                        <div class="control-group3 input-group" style="margin-top:10px">
+                                            <input type="file" name="doc_id[]" class="form-control">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-danger3" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6 col-md-6" style="margin-top:70px">
+                                    <div class="form-group">
+                                        <label class="form-label">Administrator First Name</label>
+                                        <input name="adm_first_name" type="text" class="form-control" id="adm_first_name" placeholder="Administrator First Name" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6" style="margin-top:10px">
+                                    <div class="form-group">
+                                        <label class="form-label">Administrator Last Name</label>
+                                        <input name="adm_last_name" type="text" class="form-control" id="adm_last_name" placeholder="Administrator Last Name" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6" style="margin-top:10px">
+                                    <div class="form-group">
+                                        <label class="form-label">Administrator Phone</label>
+                                        <input name="adm_phone" type="text" class="form-control" id="adm_phone" placeholder="Administrator Phone" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Administrator Email</label>
+                                        <input name="adm_email" type="text" class="form-control" id="adm_email" placeholder="Administrator Email" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Administrator Percentage</label>
+                                        <input name="adm_percentage" type="text" class="form-control" id="adm_percentage" placeholder="Administrator Percentage" required>
+                                    </div>
+                                </div>
+
                             </div>
-                            <!--end panel-->
                         </div>
-                        <!--end panel-group-->
-                    </section>
-
-                    <section class="clearfix">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary large icon float-right">Preview<i class="fa fa-chevron-right"></i></button>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-secondary">Add Business</button>
                         </div>
-                    </section>
-                </form>
-                <!--end form-submit-->
+                        </form>
+                    </div>
+                </div>
             </div>
-            <!--end container-->
-        </section>
-        <!--end block-->
+        </div>
     </section>
-    <!--end content-->
+    <!--/User Dashboard-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+
+
+
+
 
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('select[name="state_id"]').on('change',function(){
-                var state_id = $(this).val();
-                if (state_id) {
+        function getCities(obj){
 
-                    $.ajax({
-                        url: "{{ url('/get/city/') }}/"+state_id,
-                        type:"GET",
-                        dataType:"json",
-                        success:function(data) {
-                            var d =$('select[name="city_id"]').empty();
-                            $.each(data, function(key, value){
+            var state_id = obj.value;
+            if (state_id) {
 
-                                $('select[name="city_id"]').append('<option value="'+ value.id + '">' + value.city_name + '</option>');
+                $.ajax({
+                    url: "{{ url('/get/city/') }}/"+state_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                        $('#city_id').children().remove();
+                        $('#city_id').append($('<option>', {
+                            value: '',
+                            text : 'Choose'
+                        }));
 
-                            });
-                        },
-                    });
+                        $.each(data, function(key, value){
 
-                }else{
-                    alert('danger');
-                }
+                            $('#city_id').append($('<option>', {
+                                value: value.id,
+                                text : value.city_name
+                            }));
 
-            });
-        });
+                        });
+                    },
+                });
+
+            }else{
+                $('#city_id').children().remove();
+                $('#city_id').append($('<option>', {
+                    value: '',
+                    text : 'Choose'
+                }));
+                // alert('danger');
+            }
+        }
+
+
 
     </script>
 
 
 
+{{--    <script type="text/javascript">--}}
+{{--        $(document).ready(function() {--}}
+{{--            $(".mybtn-success").click(function(){--}}
+{{--                var html = $(".clone1").html();--}}
+{{--                $(".increment1").after(html);--}}
+{{--            });--}}
+{{--            $("body").on("click",".mybtn-danger",function(){--}}
+{{--                $(this).parents(".control-group1").remove();--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
 
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".btn-success1").click(function(){
+                var html = $(".clone").html();
+                $(".increment1").after(html);
+            });
+            $("body").on("click",".btn-danger1",function(){
+                $(this).parents(".control-group1").remove();
+            });
+        });
+    </script>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".btn-success2").click(function(){
+                var html = $(".clone").html();
+                $(".increment2").after(html);
+            });
+            $("body").on("click",".btn-danger2",function(){
+                $(this).parents(".control-group2").remove();
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".btn-success3").click(function(){
+                var html = $(".clone").html();
+                $(".increment3").after(html);
+            });
+            $("body").on("click",".btn-danger3",function(){
+                $(this).parents(".control-group3").remove();
+            });
+        });
+    </script>
 
 @endsection

@@ -14,7 +14,7 @@
 
             <div class="card pd-20 pd-sm-40">
                 <h6 class="card-body-title">New Busines Category ADD
-                    <a href="{{ route('all_categories')}}" class="btn btn-success btn-sm pull-right"> All Business Caegory</a>
+                    <a href="{{ route('all_categories')}}" class="btn btn-success btn-sm pull-right"> All Categories</a>
                 </h6>
                 <p class="mg-b-20 mg-sm-b-30">New  Add From</p>
 
@@ -37,7 +37,21 @@
 
 
 
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-6">
+
+                                    <label class="form-control-label">Image: <span class="tx-danger">*</span></label><br>
+                                    <label class="custom-file">
+                                        <input type="file" id="image" class="custom-file-input" name="image" onchange="readURL(this);" >
+                                        <span class="custom-file-control"></span>
+                                        <img src="#" id="one">
+                                    </label>
+                                </div>
+
                         </div><!-- end row -->
+
+
+
                         <div class="col-lg-4">
                             <label class="ckbox">
                                 <input type="checkbox" name="isActive" value="1">
@@ -68,5 +82,19 @@
     </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
 
+    <script type="text/javascript">
+        function readURL(input){
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#one')
+                        .attr('src', e.target.result)
+                        .width(80)
+                        .height(80);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
 @endsection

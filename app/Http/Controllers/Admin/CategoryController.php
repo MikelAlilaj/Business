@@ -11,8 +11,8 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $category = Category::all();
-        return view('admin.categories.all_categories', compact('category'));
+        $categories = Category::all();
+        return view('admin.categories.all_categories', compact('categories'));
     }
 
     public function create()
@@ -25,35 +25,43 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(),
             [
                 'name' => 'required',
+                'image'=>'required'
             ]);
 
         if ($validator->fails()) {
-            $notification = array(
-                'message' => 'Please fill all the fields',
-                'alert-type' => 'error'
+            $notification=array(
+                'message'=>sprintf($validator->errors()->all()[0]),
+                'alert-type'=>'error'
             );
-            return Redirect()->back()->with($notification);
+            return redirect()->back()->with($notification);
         }
 
         $category=new Category();
         $category->name = $request->name;
         $category->isActive = $request->isActive;
+        $file = $request->image;
+        if ($request->image) {
+            $extension = $file->getClientOriginalExtension();
+            $final_filename = $file->getFilename() . '.' . $extension;
+            $file->storeAs('categoryImage/', $final_filename);
+            $category->image=$final_filename;
+        }
 
         if ($category->save())
         {
-            $notification2 = array(
+            $notification = array(
                 'message' => 'Category Inserted Successfully',
                 'alert-type' => 'success'
             );
-            return Redirect()->back()->with($notification2);
+            return Redirect()->back()->with($notification);
         }
         else
         {
-            $notification2 = array(
+            $notification = array(
                 'message' => 'Error. Please try again',
                 'alert-type' => 'error'
             );
-            return Redirect()->back()->with($notification2);
+            return Redirect()->back()->with($notification);
         }
     }
     public function edit($id)
@@ -66,33 +74,41 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(),
             [
                 'name' => 'required',
+
             ]);
 
         if ($validator->fails()) {
-            $notification = array(
-                'message' => 'Please fill all the fields',
-                'alert-type' => 'error'
+            $notification=array(
+                'message'=>sprintf($validator->errors()->all()[0]),
+                'alert-type'=>'error'
             );
-            return Redirect()->back()->with($notification);
+            return redirect()->back()->with($notification);
         }
 
         $category=Category::find($id);;
         $category->name = $request->name;
         $category->isActive = $request->isActive;
+        $file = $request->image;
+        if ($request->image) {
+            $extension = $file->getClientOriginalExtension();
+            $final_filename = $file->getFilename() . '.' . $extension;
+            $file->storeAs('categoryImage/', $final_filename);
+            $category->image=$final_filename;
+        }
 
         if ($category->save()) {
-            $notification1 = array(
+            $notification = array(
                 'message' => 'Business Category has been updated successfully',
                 'alert-type' => 'success'
             );
-            return Redirect()->route('all_categories')->with($notification1);
+            return Redirect()->route('all_categories')->with($notification);
         }
         else {
-            $notification2 = array(
+            $notification = array(
                 'message' => 'Error. Please try again',
                 'alert-type' => 'error'
             );
-            return redirect()->back()->with($notification2);
+            return redirect()->back()->with($notification);
         }
     }
 }

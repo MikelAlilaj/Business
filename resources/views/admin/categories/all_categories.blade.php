@@ -22,6 +22,7 @@
                         <thead>
                         <tr>
                             <th class="wd-15p">Name</th>
+                            <th class="wd-15p">Image</th>
                             <th class="wd-15p">Status</th>
                             <th class="wd-15p">Action</th>
 
@@ -29,12 +30,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($category as $row)
+                        @foreach($categories as $category)
                             <tr>
-                                <td>{{ $row->name }}</td>
+                                <td>{{$category->name }}</td>
+                                <td>
+                                    <div class="col-lg-6 col-sm-6">
+                                        <img src=" {{ URL::to($category->image) }} " style="width: 70px; height: 50px;">
+                                    </div>
+                                </td>
 
                                 <td>
-                                    @if($row->isActive == 1)
+                                    @if($category->isActive == 1)
                                         <span class="badge badge-success">Active</span>
                                     @else
                                         <span class="badge badge-danger">Inactive</span>
@@ -45,7 +51,7 @@
 
 
                                 <td>
-                                    <a href="{{ route('edit_category',$row->id) }} " class="btn btn-sm btn-info" title="edit"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ route('edit_category',$category->id) }} " class="btn btn-sm btn-info" title="edit"><i class="fa fa-edit"></i></a>
 
 
 

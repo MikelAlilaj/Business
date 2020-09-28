@@ -37,35 +37,33 @@
     <div class="sl-sideleft">
 
 
-{{--        @if(Auth::user()->role == 'admin')--}}
+        {{--        @if(Auth::user()->role == 'admin')--}}
 
-            <div class="sl-sideleft-menu">
-{{--                <a href="{{route('home')}}" class="sl-menu-link @if(\Route::current()->getName()== 'home') active @endif">--}}
-                    <div class="sl-menu-item">
-                        <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-                        <span class="menu-item-label">Dashboard</span>
-                    </div><!-- menu-item -->
-                </a><!-- sl-menu-link -->
-
-
-
-                <a href="#" class="sl-menu-link  @if(\Route::current()->getName()== 'all_categories' )  active show-sub  @endif ">
-                    <div class="sl-menu-item">
-                        <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
-                        <span class="menu-item-label">Category</span>
-                        <i class="menu-item-arrow fa fa-angle-down"></i>
-                    </div><!-- menu-item -->
-                </a><!-- sl-menu-link -->
-                <ul class="sl-menu-sub nav flex-column">
-                    <li class="nav-item "><a href="{{ route('all_categories')}}" class=" nav-link @if(\Route::current()->getName()== 'all_categories')  active @endif">All Categories</a></li>
-
-{{--                    <li class="nav-item"><a href="{{ route('all.business.category')}}" class="nav-link @if(\Route::current()->getName()== 'all.business.category')  active @endif ">All Business Category</a></li>--}}
-
-{{--                    <li class="nav-item"><a href="{{ route('all.product.category')}}" class="nav-link @if(\Route::current()->getName()== 'all.product.category')  active @endif">All Products Category </a></li>--}}
-
-                </ul>
+        <div class="sl-sideleft-menu">
+            {{--                <a href="{{route('home')}}" class="sl-menu-link @if(\Route::current()->getName()== 'home') active @endif">--}}
+            <div class="sl-menu-item">
+                <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+                <span class="menu-item-label">Dashboard</span>
+            </div><!-- menu-item -->
+            </a><!-- sl-menu-link -->
 
 
+
+            <a href="#" class="sl-menu-link  @if(\Route::current()->getName()== 'all_categories' )  active show-sub  @endif ">
+                <div class="sl-menu-item">
+                    <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+                    <span class="menu-item-label">Category</span>
+                    <i class="menu-item-arrow fa fa-angle-down"></i>
+                </div><!-- menu-item -->
+            </a><!-- sl-menu-link -->
+            <ul class="sl-menu-sub nav flex-column">
+                <li class="nav-item "><a href="{{ route('all_categories')}}" class=" nav-link @if(\Route::current()->getName()== 'all_categories')  active @endif">All Categories</a></li>
+
+                {{--                    <li class="nav-item"><a href="{{ route('all.business.category')}}" class="nav-link @if(\Route::current()->getName()== 'all.business.category')  active @endif ">All Business Category</a></li>--}}
+
+                {{--                    <li class="nav-item"><a href="{{ route('all.product.category')}}" class="nav-link @if(\Route::current()->getName()== 'all.product.category')  active @endif">All Products Category </a></li>--}}
+
+            </ul>
 
 
 
@@ -73,63 +71,67 @@
 
 
 
-{{--                <a href="#" class="sl-menu-link @if(\Route::current()->getName()== 'approved.business' || \Route::current()->getName()== 'new.business')  active show-sub  @endif ">--}}
-                    <div class="sl-menu-item">
-                        <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
-                        <span class="menu-item-label">Business</span>
-                        <i class="menu-item-arrow fa fa-angle-down"></i>
-                    </div><!-- menu-item -->
-                </a><!-- sl-menu-link -->
-                <ul class="sl-menu-sub nav flex-column">
+
+
+                            <a href="#" class="sl-menu-link @if(\Route::current()->getName()== 'all_approved' || \Route::current()->getName()== 'all_pending')  active show-sub  @endif ">
+            <div class="sl-menu-item">
+                <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
+                <span class="menu-item-label">Business</span>
+                <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+            </a><!-- sl-menu-link -->
+            <ul class="sl-menu-sub nav flex-column">
 
 
 
-{{--                    <li class="nav-item"><a href="{{ route('approved.business')}}" class="nav-link @if(\Route::current()->getName()== 'approved.business')  active @endif">Approved Business</a></li>--}}
+                                    <li class="nav-item"><a href="{{ route('all_approved')}}" class="nav-link @if(\Route::current()->getName()== 'all_approved')  active @endif">Approved Business</a></li>
 
-{{--                    <li class="nav-item"><a href="{{ route('new.business')}}" class="nav-link @if(\Route::current()->getName()== 'new.business')  active @endif">Pending Business </a></li>--}}
+                                    <li class="nav-item"><a href="{{ route('all_featured')}}" class="nav-link @if(\Route::current()->getName()== 'all_featured')  active @endif">Featured Business</a></li>
 
-                </ul>
+                                    <li class="nav-item"><a href="{{ route('all_pending')}}" class="nav-link @if(\Route::current()->getName()== 'all_pending')  active @endif">Pending Business </a></li>
 
-
-
-{{--                @endif--}}
-
-{{--                <a href="#" class="sl-menu-link @if(\Route::current()->getName()== 'all.products')  active show-sub  @endif">--}}
-{{--                    <div class="sl-menu-item">--}}
-{{--                        <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>--}}
-{{--                        <span class="menu-item-label">Products</span>--}}
-{{--                        <i class="menu-item-arrow fa fa-angle-down"></i>--}}
-{{--                    </div><!-- menu-item -->--}}
-{{--                </a><!-- sl-menu-link -->--}}
-{{--                <ul class="sl-menu-sub nav flex-column">--}}
-{{--                    <li class="nav-item "><a href="{{ route('all.products')}}" class=" nav-link @if(\Route::current()->getName()== 'all.products')  active @endif">All Products</a></li>--}}
-{{--                </ul>--}}
+            </ul>
 
 
 
+{{--                            @endif--}}
 
-                <a href="#" class="sl-menu-link">
-                    <div class="sl-menu-item">
-                        <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
-                        <span class="menu-item-label">Others</span>
-                        <i class="menu-item-arrow fa fa-angle-down"></i>
-                    </div><!-- menu-item -->
-                </a><!-- sl-menu-link -->
-                <ul class="sl-menu-sub nav flex-column">
-                    {{--                <li class="nav-item"><a href="" class="nav-link">Newslaters</a></li>--}}
-                    {{--                <li class="nav-item"><a href="" class="nav-link">SEO Setting </a></li>--}}
-
-                </ul>
+            {{--                <a href="#" class="sl-menu-link @if(\Route::current()->getName()== 'all.products')  active show-sub  @endif">--}}
+            {{--                    <div class="sl-menu-item">--}}
+            {{--                        <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>--}}
+            {{--                        <span class="menu-item-label">Products</span>--}}
+            {{--                        <i class="menu-item-arrow fa fa-angle-down"></i>--}}
+            {{--                    </div><!-- menu-item -->--}}
+            {{--                </a><!-- sl-menu-link -->--}}
+            {{--                <ul class="sl-menu-sub nav flex-column">--}}
+            {{--                    <li class="nav-item "><a href="{{ route('all.products')}}" class=" nav-link @if(\Route::current()->getName()== 'all.products')  active @endif">All Products</a></li>--}}
+            {{--                </ul>--}}
 
 
 
 
+            <a href="#" class="sl-menu-link">
+                <div class="sl-menu-item">
+                    <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
+                    <span class="menu-item-label">Others</span>
+                    <i class="menu-item-arrow fa fa-angle-down"></i>
+                </div><!-- menu-item -->
+            </a><!-- sl-menu-link -->
+            <ul class="sl-menu-sub nav flex-column">
+                {{--                <li class="nav-item"><a href="" class="nav-link">Newslaters</a></li>--}}
+                {{--                <li class="nav-item"><a href="" class="nav-link">SEO Setting </a></li>--}}
+
+            </ul>
 
 
 
-            </div><!-- sl-sideleft-menu -->
 
-            <br>
+
+
+
+        </div><!-- sl-sideleft-menu -->
+
+        <br>
     </div><!-- sl-sideleft -->
     <!-- ########## END: LEFT PANEL ########## -->
 
@@ -149,9 +151,9 @@
                     <div class="dropdown-menu dropdown-menu-header wd-200">
                         <ul class="list-unstyled user-profile-nav">
                             {{--                            <li><a href=""><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>--}}
-{{--                            <li><a href="{{route('password.change')}}"><i class="icon ion-ios-gear-outline"></i> Change Password</a></li>--}}
+                            {{--                            <li><a href="{{route('password.change')}}"><i class="icon ion-ios-gear-outline"></i> Change Password</a></li>--}}
 
-{{--                            <li><a href="{{ route('user.logout') }}"><i class="icon ion-power"></i> Sign Out</a></li>--}}
+                            {{--                            <li><a href="{{ route('user.logout') }}"><i class="icon ion-power"></i> Sign Out</a></li>--}}
                         </ul>
                     </div><!-- dropdown-menu -->
                 </div><!-- dropdown -->
@@ -173,7 +175,7 @@
 
 @endguest
 
-@yield('content')
+
 
 <script src="{{asset('backend/lib/jquery/jquery.js')}}"></script>
 <script src="{{asset('backend/lib/popper.js/popper.js')}}"></script>
@@ -263,30 +265,8 @@
 <script src="{{asset('backend/js/ResizeSensor.js')}}"></script>
 <script src="{{asset('backend/js/dashboard.js')}}"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-<script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
-
-<script>
-    @if(Session::has('message'))
-    var type="{{Session::get('alert-type','info')}}"
-    switch(type){
-        case 'info':
-            toastr.info("{{ Session::get('message') }}");
-            break;
-        case 'success':
-            toastr.success("{{ Session::get('message') }}");
-            break;
-        case 'warning':
-            toastr.warning("{{ Session::get('message') }}");
-            break;
-        case 'error':
-            toastr.error("{{ Session::get('message') }}");
-            break;
-    }
-    @endif
-</script>
-
+@include('partials.alerts')
+@yield('content')
 </body>
 
 

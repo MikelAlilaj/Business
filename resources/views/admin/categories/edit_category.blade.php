@@ -27,6 +27,23 @@
                                 </div>
                             </div><!-- col-4 -->
 
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-6">
+
+                                    <label class="form-control-label">Image: <span class="tx-danger">*</span></label><br>
+                                    <label class="custom-file">
+                                        <input type="file" id="image" class="custom-file-input" name="image" onchange="readURL(this);" >
+                                        <span class="custom-file-control"></span>
+                                        <input type="hidden" name="old_one" value="{{ $category->image}}">
+                                        <img src="#" id="one">
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-6 col-sm-6">
+                                    <img src=" {{ URL::to($category->image) }} " style="width: 80px; height: 80px;">
+                                </div>
+
+                            </div><!-- col-4 -->
 
                         </div><!-- end row -->
                         <div class="col-lg-4">
@@ -53,6 +70,20 @@
 
     </div><!-- row -->
 
+    <script type="text/javascript">
+        function readURL(input){
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#one')
+                        .attr('src', e.target.result)
+                        .width(80)
+                        .height(80);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
 
 @endsection

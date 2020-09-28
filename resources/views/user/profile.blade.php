@@ -1,126 +1,103 @@
 @extends('layouts.app')
 
 @section('content')
-<!doctype html>
-<html lang="en">
-<body>
-<section class="content">
-    <section class="block">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <nav class="nav flex-column side-nav">
-                        <a class="nav-link active icon" href="{{route('user_profile')}}">
-                            <i class="fa fa-user"></i>My Profile
-                        </a>
-                        <a class="nav-link icon" href="my-ads.html">
-                            <i class="fa fa-heart"></i>My Ads Listing
-                        </a>
-                        <a class="nav-link icon" href="bookmarks.html">
-                            <i class="fa fa-star"></i>Bookmarks
-                        </a>
-                        <a class="nav-link icon" href="change-password.html">
-                            <i class="fa fa-recycle"></i>Change Password
-                        </a>
-                        <a class="nav-link icon" href="sold-items.html">
-                            <i class="fa fa-check"></i>Sold Items
-                        </a>
-                    </nav>
-                </div>
-                <div class="row">
-
-                    <div class="col-sm-12">
-
-                        <form method="post" action="{{route('user_update', $user)}}" enctype="multipart/form-data">
-                            @csrf
-
-                            <div class="mb-4">
-                                <img class="img-profile rounded-circle" src="{{$user->avatar}}">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="file" name="avatar">
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="firstname">First Name</label>
-                                <input type="text"
-                                       name="firstname"
-                                       class="form-control @error('firstname') is-invalid @enderror"
-
-
-                                       id="firstname"
-                                       value="{{$user->firstname}}"
-
-                                >
-                                @error('firstname')
-                                <div class="invalid-feedback">{{$message}}</div>
-                                @enderror
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label for="lastname">Last Name</label>
-                                <input type="text"
-                                       name="lastname"
-                                       class="form-control @error('lastname') is-invalid @enderror"
-
-
-                                       id="lastname"
-                                       value="{{$user->lastname}}"
-
-                                >
-                                @error('lastname')
-                                <div class="invalid-feedback">{{$message}}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input type="text"
-                                       name="phone"
-                                       class="form-control @error('phone') is-invalid @enderror"
-
-
-                                       id="phone"
-                                       value="{{$user->phone}}"
-
-                                >
-                                @error('lastname')
-                                <div class="invalid-feedback">{{$message}}</div>
-                                @enderror
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text"
-                                       name="email"
-                                       class="form-control @error('email') is-invalid @enderror"
-                                       id="email"
-                                       value="{{$user->email}}"
-
-                                >
-
-                                @error('email')
-                                <div class="alert alert-danger">{{$message}}</div>
-                                @enderror
-                            </div>
-
-
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-
+    <!--Breadcrumb-->
+    <section>
+        <div class="bannerimg cover-image bg-background3" data-image-src="{{asset('frontend/assets/images/banners/banner2.jpg')}}">
+            <div class="header-text mb-0">
+                <div class="container">
+                    <div class="text-center text-white">
+                        <h1 class="">My Dashboard</h1>
+                        <ol class="breadcrumb text-center">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">My Dashboard</li>
+                        </ol>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
-</section>
+    <!--Breadcrumb-->
+    <section class="sptb">
+        <div class="container">
+            <div class="row">
+                @include('layouts.sidebar')
+                <div class="col-xl-9 col-lg-12 col-md-12">
+                    <div class="card mb-0 overflow-hidden">
+                        <form method="post" action="{{route('user_update')}}" enctype="multipart/form-data">
+                            @csrf
+                        <div class="card-header">
+                            <h3 class="card-title">Edit Profile</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">First Name</label>
+                                        <input type="text" name="firstname" class="form-control " id="firstname" value="{{$user->firstname}}" required>
 
-</body>
-</html>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Last Name</label>
+                                        <input type="text" name="lastname" class="form-control " id="lastname" value="{{$user->lastname}}" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="text" name="phone" class="form-control  " id="phone" value="{{$user->phone}}" required>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Email address</label>
+                                        <input type="text" name="email" class="form-control " id="email" value="{{$user->email}}" required>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <div class="form-group mb-0">
+                                        <label class="form-label">Upload Image</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="avatar" onchange="readURL(this);" >
+                                            <label class="custom-file-label">Choose file</label>
+                                            <img  src="#" id="avatar" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-secondary">Updated Profile</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/User Dashboard-->
+
+    <script type="text/javascript">
+        function readURL(input){
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#avatar')
+                        .attr('src', e.target.result)
+                        .width(80)
+                        .height(80);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 @endsection
