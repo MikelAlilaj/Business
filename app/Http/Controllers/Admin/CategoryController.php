@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,6 +15,8 @@ class CategoryController extends Controller
         $categories = Category::all();
         return view('admin.categories.all_categories', compact('categories'));
     }
+
+
 
     public function create()
     {
@@ -110,5 +113,10 @@ class CategoryController extends Controller
             );
             return redirect()->back()->with($notification);
         }
+    }
+    public function all_subscribers()
+    {
+        $subscribers = Subscriber::all();
+        return view('admin.subscribers.all_subscribers', compact('subscribers'));
     }
 }

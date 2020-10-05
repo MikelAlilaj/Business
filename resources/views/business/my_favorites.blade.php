@@ -37,7 +37,7 @@
                                     <div class="item-card9-img">
                                         <div class="item-card9-imgs">
                                             <a href="{{route('view_business', \App\Business::find($favorite->business_id)->id)}}"></a>
-                                            <img src="{{URL::to('storage/businessImages/'.\App\Business::find($favorite->business_id)->photos->first()->file)}}" alt="img" width="300px;" hright="300;" class="cover-image">
+                                            <img src="{{URL::to('storage/businessImages/'.\App\Business::find($favorite->business_id)->photos->first()->file)}}"  alt="img" width="600;" height="200;">
                                         </div>
                                     </div>
                                     <div class="card border-0 mb-0">

@@ -85,30 +85,35 @@ class BusinessController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'subject_name' => 'required',
-            'category_id' => 'required',
-            'initial_capital' => 'required',
-            'legale_status' => 'required',
-            'status' => 'required',
-            'creation_year' => 'required',
-            'nuis' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
-            'description' => 'required',
-            'company_service_description' => 'required',
-            'state_id' => 'required',
-            'city_id' => 'required',
-            'official_address' => 'required',
-            'verified' => 'required',
-            'adm_first_name' => 'required',
-            'adm_last_name' => 'required',
-            'adm_phone' => 'required',
-            'adm_email' => 'required',
-            'adm_percentage' => 'required',
-            'photo_id' => 'max:2048',
-            'video_id' => 'max:20000',
-            'doc_id' => 'max:2048',
-        ]);
+            'subject_name' => 'required|max:100',
+            'category_id' => 'required|max:100',
+            'initial_capital' => 'required|max:100',
+            'legale_status' => 'required|max:100',
+            'status' => 'required|max:100',
+            'creation_year' => 'required|max:20',
+            'nuis' => 'required|max:20',
+            'phone' => 'required|max:20',
+            'email' => 'required|max:100',
+            'description' => 'required|max:1000',
+            'company_service_description' => 'required|max:1000',
+            'state_id' => 'required|max:100',
+            'city_id' => 'required|max:1000',
+            'official_address' => 'required|max:100',
+            'verified' => 'required|max:100',
+            'adm_first_name' => 'required|max:100',
+            'adm_last_name' => 'required|max:100',
+            'adm_phone' => 'required|max:100',
+            'adm_email' => 'required|max:100',
+            'adm_percentage' => 'required|max:50',
+            'photo_id' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'video_id' => 'mimetypes:video/x-ms-asf,video/x-flv,video/mp4,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi',
+            'doc_id' => 'required|max:10000|mimes:application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        ],
+        [
+        'photo_id.*.required' => 'Please upload an image',
+        'photo_id.*.mimes' => 'Only jpeg,png and bmp images are allowed',
+        'photo_id.*.max' => 'Sorry! Maximum allowed size for an image is 20MB',
+    ]);
         if ($validator->fails()) {
             $notification=array(
                 'message'=>sprintf($validator->errors()->all()[0]),
@@ -140,6 +145,9 @@ class BusinessController extends Controller
         $business->adm_phone = $request->adm_phone;
         $business->adm_email = $request->adm_email;
         $business->adm_percentage = $request->adm_percentage;
+        $business->latitude = $request->latitude;
+        $business->longtitude = $request->longtitude;
+
 
 
         if ($business->save()) {
@@ -276,6 +284,8 @@ class BusinessController extends Controller
         $business->adm_phone = $request->adm_phone;
         $business->adm_email = $request->adm_email;
         $business->adm_percentage = $request->adm_percentage;
+        $business->latitude = $request->latitude;
+        $business->longtitude = $request->longtitude;
 
 
         if ($business->save()) {

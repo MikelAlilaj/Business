@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 
-<head>
     <!-- META DATA -->
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
@@ -108,9 +107,9 @@
                                         <a href="{{ route('user_profile') }}" class="dropdown-item" >
                                             <i class="dropdown-icon icon icon-user"></i> My Profile
                                         </a>
-{{--                                        <a class="dropdown-item" href="#">--}}
-{{--                                            <i class="dropdown-icon icon icon-speech"></i> Inbox--}}
-{{--                                        </a>--}}
+                                        <a class="dropdown-item" href="{{ route('all_messages') }}">
+                                            <i class="dropdown-icon icon icon-speech"></i> Inbox
+                                        </a>
 {{--                                        <a class="dropdown-item" href="#">--}}
 {{--                                            <i class="dropdown-icon icon icon-bell"></i> Notifications--}}
 {{--                                        </a>--}}
@@ -211,9 +210,154 @@
 
     <!-- Custom Js-->
     <script src="{{ asset('frontend/assets/js/custom.js') }}"></script>
-@include('partials.alerts')
 
-        @yield('content')
+    @include('partials.alerts')
+
+    @yield('content')
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+    </script>
+    <script>
+        var receiver_id = '';
+        var my_id = "{{ Auth::id() }}";
+        $(document).ready(function () {
+            // ajax setup form csrf token
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // Enable pusher logging - don't include this in production
+            Pusher.logToConsole = true;
+
+            var pusher = new Pusher('85a778d355b6659bb2ef', {
+                cluster: 'eu',
+            });
+
+            var channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', function(data) {
+                // alert(JSON.stringify(data));
+
+                if (my_id == data.from) {
+                    $('#' + data.to).click();
+                } else if (my_id == data.to) {
+                    if (receiver_id == data.from) {
+                        // if receiver is selected, reload the selected user ...
+                        $('#' + data.from).click();
+                    } else {
+                        // if receiver is not seleted, add notification for that user
+                        var pending = parseInt($('#' + data.from).find('.pending').html());
+
+                        // if (pending) {
+                        //     $('#' + data.from).find('.pending').html(pending + 1);
+                        // } else {
+                        //     $('#' + data.from).append('<span class="pending">1</span>');
+                        // }
+                    }
+                }
+            });
+
+            $('.user').click(function () {
+                $('.user').removeClass('active');
+                $(this).addClass('active');
+                $(this).find('.pending').remove();
+
+                receiver_id = $(this).attr('id');
+                $.ajax({
+                    type: "get",
+                    url: "message/" + receiver_id, // need to create this route
+                    data: "",
+                    cache: false,
+                    success: function (data) {
+                        $('#messages').html(data);
+                        scrollToBottomFunc();
+                    }
+                });
+            });
+
+            $(document).on('keyup', '.input-text input', function (e) {
+                var message = $(this).val();
+
+                // check if enter key is pressed and message is not null also receiver is selected
+                if (e.keyCode == 13 && message != '' && receiver_id != '') {
+                    var d = new Date();
+                    //03 Oct 20, 10:45 pm
+                    var ampm = d.getHours() >= 12 ? 'pm' : 'am';
+                    var currentHours = ("0" + d.getHours()).slice(-2);
+                    var currentDate = ("0" + d.getDate()).slice(-2);
+                    var strDate = currentDate + " " + monthNames[d.getMonth()] +" "+ d.getFullYear().toString().slice(-2) + ", " + (currentHours) + ":" +d.getMinutes()+ " "+ampm ;
+                    $("#messages ul").append('<li class="message clearfix"><div class="sent"><p>'+$("#sendMessage").val()+'</p><p class="date">'+strDate+'</p></div></li>');
+
+                    $(this).val(''); // while pressed enter text box will be empty
+
+                    var datastr = "receiver_id=" + receiver_id + "&message=" + message;
+                    $.ajax({
+                        type: "post",
+                        url: "message", // need to create this post route
+                        data: datastr,
+                        cache: false,
+                        success: function (data) {
+
+                        },
+                        error: function (jqXHR, status, err) {
+                        },
+                        complete: function () {
+                            scrollToBottomFunc();
+                        }
+                    })
+                }
+            });
+        });
+
+        // make a function to scroll down auto
+        function scrollToBottomFunc() {
+            $('.message-wrapper').animate({
+                scrollTop: $('.message-wrapper').get(0).scrollHeight
+            }, 50);
+        }
+        // function fetchdata(){
+        //     receiver_id = $('.active').attr('id');
+        //     $.ajax({
+        //         url: '/business/public/message_ajax/'+receiver_id,
+        //         type: 'get',
+        //         success: function(data){
+        //             // Perform operation on return value
+        //             console.log(data);
+        //             if (data.length > 0 ){
+        //                 for (var i = 0; i < data.length; i++){
+        //                     var mesazhi = data[i];
+        //                     var d = new Date();
+        //                     //03 Oct 20, 10:45 pm
+        //                     var ampm = d.getHours() >= 12 ? 'pm' : 'am';
+        //                     var currentHours = ("0" + d.getHours()).slice(-2);
+        //                     var currentDate = ("0" + d.getDate()).slice(-2);
+        //                     var strDate = currentDate + " " + monthNames[d.getMonth()] +" "+ d.getFullYear().toString().slice(-2) + ", " + (currentHours) + ":" +d.getMinutes()+ " "+ampm ;
+        //                     $("#messages ul").append('<li class="message clearfix"><div class="received"><p>'+mesazhi.message+'</p><p class="date">'+strDate+'</p></div></li>');
+        //                     scrollToBottomFunc();
+        //                 }
+        //             }
+        //         },
+        //         complete:function(data){
+        //             setTimeout(fetchdata,1000);
+        //         }
+        //     });
+        // }
+        //script to get new messages
+        $(document).ready(function () {
+            setTimeout(fetchdata,1000);
+        });
+    </script>
+    <script>
+
+    </script>
+
+
+
 
 
 

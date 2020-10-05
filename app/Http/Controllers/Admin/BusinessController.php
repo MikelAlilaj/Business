@@ -68,4 +68,7 @@ class BusinessController extends Controller
         );
         return Redirect()->route('all_approved')->with($notification);
     }
+
+
+
 }

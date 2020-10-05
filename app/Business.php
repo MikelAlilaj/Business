@@ -30,6 +30,8 @@ class Business extends Model
         'adm_phone' ,
         'adm_email' ,
         'adm_percentage' ,
+        'latitude',
+        'longtitude',
 
     ];
 

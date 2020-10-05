@@ -149,7 +149,7 @@
                                         <form>
                                             <div class="form-group">
                                                 @foreach($business->docs as $doc)
-                                                    <iframe src = "{{ URL::to('storage/businessDocs/'.$doc->file) }}" width='700' height='550' allowfullscreen webkitallowfullscreen></iframe>
+                                                    <iframe src = "{{ URL::to('storage/businessDocs/'.$doc->file) }}" width='700' height='550' allowfullscreen  ></iframe>
                                                 @endforeach
                                             </div>
                                         </form>
@@ -234,8 +234,7 @@
                                 <a href="#" class="btn btn-info icons"><i class="icon icon-share mr-1"></i> Share Business</a>
                                 <a href="#" class="btn btn-pink icons"><i class="icon icon-heart  mr-1"></i>Add to favorite</a>
 
-{{--                                <a href="#" class="btn btn-primary icons"><i class="icon icon-printer  mr-1"></i> Print</a>--}}
-{{--                                <a href="#" class="btn btn-danger icons mb-1 mt-1" data-toggle="modal" data-target="#report"><i class="icon icon-exclamation mr-1"></i> Report Abuse</a>--}}
+
                             </div>
                         </div>
                     </div>
@@ -273,9 +272,40 @@
                                     <div>
                                         <h6><span class="font-weight-semibold"><i class="fa fa-envelope mr-3 mb-2"></i></span><a href="#" class="text-body">{{ \App\User::find($business->user_id)->email }}</a></h6>
                                         <h6><span class="font-weight-semibold"><i class="fa fa-phone mr-3 mb-2"></i></span><a href="#" class="text-secondary">{{ \App\User::find($business->user_id)->phone }}</a></h6>
+                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal1" data-whatever="@fat">Send Message</button>
+
+                                        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <form method="post" action="{{ route('store_message',$business->id)}}" enctype="multipart/form-data">
+                                                    @csrf
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="form-group">
+                                                                <label for="message" class="col-form-label">Message:</label>
+                                                                <textarea name="message" class="form-control" id="message"></textarea>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <button type="submit" class="btn btn-secondary">Send message</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                     </div>
                                 </div>
-                            </div>
 
                         </div>
                     </div>
@@ -283,19 +313,11 @@
                         <div class="card-header">
                             <h3 class="card-title">Business location</h3>
                         </div>
-                        <div class="card-body">
-                            <div class="map-header">
-                                <div class="map-header-layer" id="map2"></div>
-                            </div>
-                            <div class="item-user mt-5">
-                                <div>
-                                    <h6><span class="font-weight-semibold"><i class="fa fa-map mr-3 mb-0"></i></span><a href="#" class="text-body"> Mp-214, New York, NY 10012, US-52014</a></h6>
-                                </div>
-                            </div>
-                        </div>
-{{--                        <div class="card-footer">--}}
-{{--                            <a class="btn btn-secondary" href="#Map-modal" data-toggle="modal" data-target="#Map-modal">Get Direction</a>--}}
-{{--                        </div>--}}
+                        <br>
+                        <input id="pac-input" class="controls" class="form-control m-input" type="text" placeholder="Search Box">
+                        <div class="container" id="locationMap" style="height:300px; width: 350px"></div>
+
+
                     </div>
 
                     <div class="card overflow-hidden">
@@ -334,4 +356,86 @@
     </section>
 
 
+
+    <script>
+        var marker1 = false;
+        function initAutocomplete1()
+        {
+            var locationMap = new google.maps.Map(document.getElementById('locationMap'), {
+                center: {lat:{{$business->latitude}}, lng:{{$business->longtitude}}},
+                zoom: 13,
+                mapTypeId: 'roadmap'
+            });
+
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('pac-input');
+            var searchBox = new google.maps.places.SearchBox(input);
+            locationMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            //View marker.
+            marker1 = new google.maps.Marker({
+                position: {lat: {{$business->latitude}}, lng:{{$business->longtitude}}},
+                map: locationMap,
+                draggable: true //make it draggable
+            });
+
+
+
+            var markers1 = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function() {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers1.forEach(function(marker) {
+                    marker1.setMap(null);
+                });
+                markers1 = [];
+
+                // For each place, get the icon, name and location.
+                var bounds = new google.maps.LatLngBounds();
+                places.forEach(function(place) {
+                    if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                    var icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    // Create a marker for each place.
+                    markers1.push(new google.maps.Marker({
+                        map: locationMap,
+                        icon: icon,
+                        title: place.name,
+                        position: place.geometry.location
+                    }));
+
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                locationMap.fitBounds(bounds);
+            });
+
+
+            initAutocomplete();
+            markerLocation();
+        }
+
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQME12U4JLF1APtXuR45KJFrkZrqxlPH4&libraries=places&callback=initAutocomplete1"
+            async defer></script>
 @endsection

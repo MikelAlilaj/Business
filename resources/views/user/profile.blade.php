@@ -67,9 +67,8 @@
                                     <div class="form-group mb-0">
                                         <label class="form-label">Upload Image</label>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="avatar" onchange="readURL(this);" >
+                                            <input type="file" class="custom-file-input" name="avatar" >
                                             <label class="custom-file-label">Choose file</label>
-                                            <img  src="#" id="avatar" >
                                         </div>
                                     </div>
                                 </div>
@@ -86,18 +85,5 @@
     </section>
     <!--/User Dashboard-->
 
-    <script type="text/javascript">
-        function readURL(input){
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#avatar')
-                        .attr('src', e.target.result)
-                        .width(80)
-                        .height(80);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
+
 @endsection

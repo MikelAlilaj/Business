@@ -73,7 +73,7 @@
 
 
 
-                            <a href="#" class="sl-menu-link @if(\Route::current()->getName()== 'all_approved' || \Route::current()->getName()== 'all_pending')  active show-sub  @endif ">
+                            <a href="#" class="sl-menu-link @if(\Route::current()->getName()== 'all_approved' || \Route::current()->getName()== 'all_pending'|| \Route::current()->getName()== 'all_featured')  active show-sub  @endif ">
             <div class="sl-menu-item">
                 <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
                 <span class="menu-item-label">Business</span>
@@ -118,7 +118,7 @@
                 </div><!-- menu-item -->
             </a><!-- sl-menu-link -->
             <ul class="sl-menu-sub nav flex-column">
-                {{--                <li class="nav-item"><a href="" class="nav-link">Newslaters</a></li>--}}
+                                <li class="nav-item"><a href="{{ route('all_subscribers')}}" class="nav-link">Subscribers</a></li>
                 {{--                <li class="nav-item"><a href="" class="nav-link">SEO Setting </a></li>--}}
 
             </ul>

@@ -49,4 +49,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Business');
     }
 
+    public function conversations(){
+        return $this->hasMany(Conversation::class);
+    }
+
 }

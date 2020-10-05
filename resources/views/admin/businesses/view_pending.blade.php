@@ -88,6 +88,7 @@
                                 <strong>{{\App\City::find($business->city_id)->city_name}}</strong>
                             </div>
                         </div><!-- col-4 -->
+
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Official Address: <span class="tx-danger">*</span></label><br>
@@ -108,6 +109,14 @@
                                 <strong>{{ $business->company_service_description}}</strong>
                             </div>
                         </div><!-- col-4 -->
+
+
+                        <div class="col-lg-4">
+
+                            <div class="left" id="locationMap" style="height:250px; width: 350px"></div>
+
+                        </div><!-- col-4 -->
+
 
 
 
@@ -156,45 +165,46 @@
                             <div class="form-group">
                                 <label class="form-control-label">Status: <span class="tx-danger">*</span></label><br>
                                 <strong>
-                                    @if($business->web_status == 'pending')
-                                        <span class="badge badge-warning">Pending</span>
+                                    @if($business->web_status == 'approved')
+                                        <span class="badge badge-warning">Approved</span>
                                     @endif
                                 </strong>
                             </div>
                         </div><!-- col-4 -->
 
+                        <div class="col-lg-4">
+                            @foreach($business->photos as $photo)
+
+                                <img src="{{ URL::to('storage/businessImages/'.$photo->file) }}" style="width: 100px; height: 100px;">
+
+                            @endforeach
+                        </div> <!-- col-4 -->
+
+                        <div class="col-lg-4">
+                            @foreach($business->videos as $video)
+
+
+                                <div class="control-group1 input-group" style="margin-top:20px" >
+
+                                    <iframe src="{{ URL::to('storage/businessVideos/'.$video->file) }}" width="350" height="205" frameborder="0" allowfullscreen></iframe>
+
+                                </div>
+
+                            @endforeach
+                        </div> <!-- col-4 -->
 
 
 
-                        @foreach($business->photos as $photo)
-                            <div class="col-lg-1">
-                                <img src="{{ URL::to('storage/businessImages/'.$photo->file) }}" style="width: 80px; height: 80px;">
-                            </div>
-                        @endforeach
+                        <div class="col-lg-4">
+                            @foreach($business->docs as $doc)
 
-                        @foreach($business->videos as $video)
+                                <iframe src = "{{ URL::to('storage/businessDocs/'.$doc->file) }}" width='950' height='250' allowfullscreen  ></iframe>
 
+                            @endforeach
+                        </div> <!-- col-4 -->
+                    </div>
 
-                                    <div class="control-group1 input-group" style="margin-top:20px" >
-
-                                        <iframe src="{{ URL::to('storage/businessVideos/'.$video->file) }}" width="600" height="305" frameborder="0" allowfullscreen></iframe>
-
-                                    </div>
-
-
-                        @endforeach
-
-                    </div> <!-- col-4 -->
-
-
-
-                    @foreach($business->docs as $doc)
-                        <div class="col-lg-1">
-                            <iframe src = "{{ URL::to('storage/businessDocs/'.$doc->file) }}" width='1150' height='150' allowfullscreen webkitallowfullscreen></iframe>
-                        </div>
-                    @endforeach
-
-                </div><!-- end row -->
+                </div><!-- card -->
                 <br>
 
                 @if($business->web_status == 'pending')
@@ -216,6 +226,86 @@
 
     </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
+    <script>
+        var marker1 = false;
+        function initAutocomplete1()
+        {
+            var locationMap = new google.maps.Map(document.getElementById('locationMap'), {
+                center: {lat:{{$business->latitude}}, lng:{{$business->longtitude}}},
+                zoom: 13,
+                mapTypeId: 'roadmap'
+            });
 
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('pac-input');
+            var searchBox = new google.maps.places.SearchBox(input);
+            locationMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            //View marker.
+            marker1 = new google.maps.Marker({
+                position: {lat: {{$business->latitude}}, lng:{{$business->longtitude}}},
+                map: locationMap,
+                draggable: true //make it draggable
+            });
+
+
+
+            var markers1 = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function() {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers1.forEach(function(marker) {
+                    marker1.setMap(null);
+                });
+                markers1 = [];
+
+                // For each place, get the icon, name and location.
+                var bounds = new google.maps.LatLngBounds();
+                places.forEach(function(place) {
+                    if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                    var icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    // Create a marker for each place.
+                    markers1.push(new google.maps.Marker({
+                        map: locationMap,
+                        icon: icon,
+                        title: place.name,
+                        position: place.geometry.location
+                    }));
+
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                locationMap.fitBounds(bounds);
+            });
+
+
+            initAutocomplete();
+            markerLocation();
+        }
+
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQME12U4JLF1APtXuR45KJFrkZrqxlPH4&libraries=places&callback=initAutocomplete1"
+            async defer></script>
 
 @endsection
