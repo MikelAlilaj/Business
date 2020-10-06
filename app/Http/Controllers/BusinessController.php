@@ -20,9 +20,10 @@ class BusinessController extends Controller
 
     public function index()
     {
-        $businesses = Business::all();
+        $businesses = Business::paginate(8);
         $categories=Category::all();
         $states=State::all();
+
 
         return view('business.index', ['businesses'=>$businesses,'categories'=>$categories,'states'=>$states]);
     }
@@ -47,7 +48,8 @@ class BusinessController extends Controller
             $businesses = Business::where('subject_name','LIKE',"%$item%")
                 ->where('category_id',$category_id)
                 ->where('state_id',$state_id)
-                ->get();
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
 
             $categories=Category::all();
             $states=State::all();

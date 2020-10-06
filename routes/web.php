@@ -31,6 +31,8 @@ Route::group(['middleware'=>['auth','admin']],function() {
     Route::get('all_subscribers', 'Admin\CategoryController@all_subscribers')->name('all_subscribers');
 
 //Business
+    Route::post('businesses_datatable', 'Admin\BusinessController@businesses_datatable')->name('businesses_datatable');
+
     Route::get('all_approved', 'Admin\BusinessController@all_approved')->name('all_approved');
     Route::get('all_pending', 'Admin\BusinessController@all_pending')->name('all_pending');
     Route::get('all_featured', 'Admin\BusinessController@all_featured')->name('all_featured');

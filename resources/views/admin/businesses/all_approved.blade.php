@@ -17,29 +17,18 @@
 
 
                 <div class="table-wrapper">
-                    <table id="datatable1" class="table display responsive nowrap">
+                    <table  class="table display responsive nowrap server-side">
                         <thead>
                         <tr>
                             <th class="wd-15p">Subject Name</th>
-                            <th class="wd-15p">Creation Year</th>
-                            <th class="wd-15p">Business Type</th>
+                            <th class="wd-15p">Category</th>
+                            <th class="wd-15p">State</th>
                             <th class="wd-15p">Business Category</th>
                             <th class="wd-15p">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($businesses as $business)
-                            <tr>
-                                <td>{{ $business->subject_name }}</td>
-                                <td>{{ $business->creation_year }}</td>
-                                <td>{{ \App\State::find($business->state_id)->name }} </td>
-                                <td>{{ \App\Category::find($business->category_id)->name }}</td>
 
-                                <td>
-                                    <a href="{{ route('view_approved',$business->id) }}" class="btn btn-sm btn-warning" title="Show"><i class="fa fa-eye"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
 
                         </tbody>
                     </table>
@@ -50,6 +39,33 @@
 
 
         </div><!-- sl-mainpanel -->
+
+        <script>
+            $('.server-side').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "stateSave":true,
+                "ajax": {
+                    "url": "{{ route('businesses_datatable') }}",
+                    "dataType": "json",
+                    "type": "POST",
+                    "data":{ _token: "{{csrf_token()}}"}
+
+                },
+                "columns": [
+
+                    { "data": "subject_name" },
+                    { "data": "category" },
+                    { "data": "state" },
+                    { "data": "initial_capital" },
+                    { "data": "actions" },
+
+
+                ]
+
+            } );
+
+        </script>
 
 @endsection
 

@@ -104,63 +104,84 @@
         </div>
     </section>
     <!--/Categories-->
-x
-    <!--Latest Listings-->
-    <section class="sptb bg-white">
+
+
+
+    <!--Add listing-->
+    <section class="sptb">
         <div class="container">
-            <div class="section-title center-block text-center">
-                <h2>Latest Listings</h2>
-                <p>Mauris ut cursus nunc. Morbi eleifend, ligula at consectetur vehicula</p>
-            </div>
-            <div id="myCarousel1" class="owl-carousel owl-carousel-icons2">
-                @foreach($businesses as $business)
-                    @if($business->web_status=='approved')
-                    <div class="item">
-                        <div class="card mb-0 overflow-hidden">
-                            <div class="power-ribbon power-ribbon-top-left text-warning"><span class="bg-warning"><i class="fa fa-bolt"></i></span></div>
-                            <div class="item-card2-img">
-                                <a href="{{route('view_business', $business->id)}}" class="absolute-link"></a>
-                                <img src="{{$business->photos ? URL::to('storage/businessImages/'.$business->photos->first()->file) : 'http://placehold.it/400x400'}}" width="400;" height="250;" alt="img" class="cover-image">
-                                <div class="item-card2-icons">
-                                    <button class="addwishlist" data-id="{{ $business->id }}" >
-                                        <div class="item-card2-icons-r"><i class="fa fa fa-heart-o"></i></div>
-                                    </button>
-                                </div>
-                                <div class="blog--category">{{ \App\Category::find($business->category_id)->name }}</div>
-                            </div>
-                            <div class="card-body pb-0">
-                                <div class="item-card2">
-                                    <div class="item-card2-desc">
-                                        <div class="item-card2-text">
-                                            <a href="{{route('view_business',$business->id)}}" class="text-dark"><h4 class="mb-0">{{$business->subject_name}}</h4></a>
-                                        </div>
-                                        <div class="pt-3">
-                                            <a href="mb-1"><p class="pb-0 pt-0 mb-2 mt-2"><i class="fa fa-map-marker mr-2"></i>{{\App\City::find($business->city_id)->city_name}}, {{\App\State::find($business->state_id)->name}}</p></a>
-                                            <a href="mb-1"><p class="pb-0 pt-0 mb-2 mt-2"><i class="fa fa-phone mr-2"></i>{{$business->phone}}</p></a>
+            <div class="row">
+                <div class="col-xl-12 col-lg-9 col-md-12">
+                    <!--Add lists-->
+                    <div class=" mb-lg-0">
+                        <div class="">
+                            <div class="item2-gl business-list-01">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-12">
+                                        <div class="row">
+                                            @foreach($businesses as $business)
+                                                @if($business->web_status=='approved')
+                                            <div class="col-lg-6 col-md-6 col-xl-6">
+                                                <div class="card overflow-hidden">
+                                                    <div class="h-100">
+                                                        <div class="item-card9-img">
+                                                            <div class="item-card9-imgs">
+                                                                <a href="{{route('view_business', $business->id)}}"></a>
+{{--                                                                {{$business->photos ? URL::to('storage/businessImages/'.$business->photos->first()->file) : 'http://placehold.it/400x400'}}--}}
+                                                                <img src="http://placehold.it/400x400" width="300;" height="250;" alt="img" class="cover-image">
+                                                            </div>
+
+                                                                <div class="item-card2-icons">
+                                                                    <button class="addwishlist" data-id="{{ $business->id }}" >
+                                                                        <div class="item-card2-icons-r"><i class="fa fa fa-heart-o"></i></div>
+                                                                    </button>
+                                                                </div>
+
+                                                            <div class="item-cardreview-absolute bg-primary">{{ \App\Category::find($business->category_id)->name }}</div>
+                                                        </div>
+                                                        <div class="card border-0 mb-0">
+                                                            <div class="card-body">
+                                                                <div class="item-card9">
+                                                                    <a href="business.html" class="text-dark"><h4 class="font-weight-semibold mt-1 mb-1">{{$business->subject_name}}<i class="fa fa-exclamation-circle text-warning ml-1" data-toggle="tooltip" data-placement="top" title="" data-original-title="Not Verified"></i></h4></a>
+
+                                                                    <div class="mt-2 mb-2">
+                                                                        <a href="#" class="mt-1 mb-1 mr-3 text-dark"><i class="fa fa-globe mr-1"></i>{{\App\City::find($business->city_id)->city_name}}, {{\App\State::find($business->state_id)->name}}</a>
+                                                                        <a href="mb-1"><p class="pb-0 pt-0 mb-2 mt-2"><i class="fa fa-phone mr-2"></i>{{$business->phone}}</p></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <p class="">{!!  \Illuminate\Support\Str::limit($business->description, $limit = 100 )  !!}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
 
                                         </div>
-                                        <p class="">{!!  \Illuminate\Support\Str::limit($business->description, $limit = 100 )  !!}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <div class="item-card2-footer">
+                            <div class="center-block text-center">
+                                <ul class="pagination mb-5">
 
-                                </div>
+                                    <li class="page-item"><a href="{{$businesses->links()}}"></a></li>
+
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    @endif
-                @endforeach
+                    <!--/Add lists-->
+                </div>
+
             </div>
         </div>
-    </section>
-    <!--Latest Listings-->
+
+
 
 
 
     <!--Featured Listings-->
-    <!--Latest Listings-->
     <section class="sptb bg-white">
         <div class="container">
             <div class="section-title center-block text-center">
@@ -210,7 +231,10 @@ x
             </div>
         </div>
     </section>
-    <!--Latest Listings-->
+    <!--Featured Listings-->
+
+
+
 
     <!--Statistics-->
     <section>
@@ -261,6 +285,8 @@ x
     </section>
     <!--/Statistics-->
 
+
+
     @guest
     <!--Section-->
     <section class="sptb bg-white">
@@ -309,6 +335,57 @@ x
     @endguest
 
 
+{{--    <!--Featured Listings-->--}}
+{{--    <section class="sptb bg-white">--}}
+{{--        <div class="container">--}}
+{{--            <div class="section-title center-block text-center">--}}
+{{--                <h2>Featured Listings</h2>--}}
+{{--                <p>Mauris ut cursus nunc. Morbi eleifend, ligula at consectetur vehicula</p>--}}
+{{--            </div>--}}
+{{--            <div id="myCarousel1" class="owl-carousel owl-carousel-icons2">--}}
+{{--                @foreach($businesses as $business)--}}
+{{--                    @if($business->web_status=='featured')--}}
+{{--                        <div class="item">--}}
+{{--                            <div class="card mb-0 overflow-hidden">--}}
+{{--                                <div class="power-ribbon power-ribbon-top-left text-warning"><span class="bg-warning"><i class="fa fa-bolt"></i></span></div>--}}
+{{--                                <div class="item-card2-img">--}}
+{{--                                    <a href="{{route('view_business', $business->id)}}" class="absolute-link"></a>--}}
+{{--                                    <img src="{{$business->photos ? URL::to('storage/businessImages/'.$business->photos->first()->file) : 'http://placehold.it/400x400'}}" width="400;" height="250;" alt="img" class="cover-image">--}}
+{{--                                    <div class="item-card2-icons">--}}
+{{--                                        <button class="addwishlist" data-id="{{ $business->id }}" >--}}
+{{--                                            <div class="item-card2-icons-r"><i class="fa fa fa-heart-o"></i></div>--}}
+{{--                                        </button>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="blog--category">{{ \App\Category::find($business->category_id)->name }}</div>--}}
+{{--                                </div>--}}
+{{--                                <div class="card-body pb-0">--}}
+{{--                                    <div class="item-card2">--}}
+{{--                                        <div class="item-card2-desc">--}}
+{{--                                            <div class="item-card2-text">--}}
+{{--                                                <a href="{{route('view_business',$business->id)}}" class="text-dark"><h4 class="mb-0">{{$business->subject_name}}</h4></a>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="pt-3">--}}
+{{--                                                <a href="mb-1"><p class="pb-0 pt-0 mb-2 mt-2"><i class="fa fa-map-marker mr-2"></i>{{\App\City::find($business->city_id)->city_name}}, {{\App\State::find($business->state_id)->name}}</p></a>--}}
+{{--                                                <a href="mb-1"><p class="pb-0 pt-0 mb-2 mt-2"><i class="fa fa-phone mr-2"></i>{{$business->phone}}</p></a>--}}
+
+{{--                                            </div>--}}
+{{--                                            <p class="">{!!  \Illuminate\Support\Str::limit($business->description, $limit = 100 )  !!}</p>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="card-footer">--}}
+{{--                                    <div class="item-card2-footer">--}}
+
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
+{{--    <!--Featured Listings-->--}}
 
 
 
@@ -333,6 +410,10 @@ x
         </div>
     </section>
     <!--/Section-->
+
+
+
+
 
     <!--Footer Section-->
     <section>
